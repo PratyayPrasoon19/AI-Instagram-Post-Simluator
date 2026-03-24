@@ -14,10 +14,10 @@ def generate_post_handler(topic, tone):
         caption, hashtags = generate_caption_and_hashtags(topic, tone)
 
         # Call AI Image Agent
-        image_url = generate_image(topic)
+        # image_url = generate_image(topic, caption)
 
         # Save to DB
-        post_id = save_post(topic, tone, caption, hashtags, image_url)
+        post_id = save_post(topic, tone, caption, hashtags, "image_url")
 
         return {
             "status": "success",
@@ -26,7 +26,7 @@ def generate_post_handler(topic, tone):
             "tone": tone,
             "caption": caption,
             "hashtags": hashtags,
-            "image_url": image_url
+            "image_url": "image_url"
         }
 
     except Exception as e:
