@@ -24,7 +24,7 @@ async function loadPostedPost() {
       return
     }
 
-    const found = data.posts.find((item) => item.id === route.params.id)
+    const found = data.posts.find((item) => String(item.id) === String(route.params.id))
     if (!found) {
       error.value = 'Post not found in history.'
       return
@@ -51,8 +51,17 @@ onMounted(loadPostedPost)
     <p v-if="loading">Loading post...</p>
     <p v-else-if="error" class="error">{{ error }}</p>
 
-    <section v-else class="post-wrapper">
+    <section v-else class="instagram-shell">
+      <div class="instagram-header">
+        <strong>Instagram</strong>
+        <span>Just now</span>
+      </div>
       <InstagramPostCard :post="post" :api-base="apiBase" compact />
+      <div class="instagram-footer">
+        <span>❤️ 128 likes</span>
+        <span>💬 14 comments</span>
+        <span>📤 Share</span>
+      </div>
     </section>
   </div>
 </template>
@@ -79,8 +88,35 @@ h1 {
   color: white;
 }
 
-.post-wrapper {
-  max-width: 700px;
+.instagram-shell {
+  max-width: 520px;
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+.instagram-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #efefef;
+}
+
+.instagram-header span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.instagram-footer {
+  display: flex;
+  gap: 16px;
+  padding: 10px 16px 14px;
+  color: #1f2937;
+  font-size: 14px;
+  border-top: 1px solid #efefef;
 }
 
 .error {
