@@ -75,5 +75,3 @@ def generate_image(topic,content):
             return "insta_post.png"
             
     return None
-
-    return None

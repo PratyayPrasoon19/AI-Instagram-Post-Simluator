@@ -16,6 +16,11 @@ System to generate Instagram posts and simulate posting using AI agents.
 
 ## Backend (FastAPI)
 
+### Environment File
+  Create an .env file in backend folder as path: backend/.env
+
+  GEMINI_API_KEY=your_gemini_api_key
+
 ### Run
 
 ```bash
