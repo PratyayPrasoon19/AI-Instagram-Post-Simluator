@@ -3,15 +3,16 @@ import base64
 from io import BytesIO
 from PIL import Image
 import google.generativeai as genai
+from google import genai as genai_sdk
+from google.genai import types
 
 # Configure Gemini API Key
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
+genai.configure(api_key="AIzaSyCKL-HhYfP2u25OOCRyXowNDYXx5hKmXAo")
 # Text Model
-text_model = genai.GenerativeModel("gemini-3-flash")
+text_model = genai.GenerativeModel("gemini-2.5-flash")
 
 # Image Model
-image_model = genai.GenerativeModel("gemini-3-flash")
+image_model = genai.GenerativeModel("gemini-2.5-flash-preview-09-2025")
 
 
 # Agent 1: Generate Caption + Hashtags
@@ -45,24 +46,33 @@ def generate_caption_and_hashtags(topic, tone):
 
     return caption, hashtags
 
-
+client = genai_sdk.Client(api_key="AIzaSyCKL-HhYfP2u25OOCRyXowNDYXx5hKmXAo")
 # Agent 2: Generate Image
-def generate_image(topic):
-    prompt = f"Create an Instagram style image for {topic}"
+def generate_image(topic,content):
+    prompt = f"Create an Instagram style image for {topic}, for the content: {content}"
 
-    response = image_model.generate_content(
-        prompt,
-        generation_config={"response_modalities": ["IMAGE"]}
+    # 2. Use the new 'models.generate_content' method
+    # This supports the response_modalities field
+    response = client.models.generate_content(
+        model="gemini-2.5-flash-image",  # Also known as Nano Banana 2
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            response_modalities=["IMAGE"],
+            image_config=types.ImageConfig(
+                aspect_ratio="1:1",
+                image_size="1K"
+            )
+        )
     )
 
+    # 3. Extract and save the image
     for part in response.candidates[0].content.parts:
-        if hasattr(part, "inline_data"):
-            image_bytes = base64.b64decode(part.inline_data.data)
-            image = Image.open(BytesIO(image_bytes))
-
-            image_path = f"generated_{topic.replace(' ', '_')}.png"
-            image.save(image_path)
-
-            return image_path
+        if part.inline_data:
+            # The new SDK provides a helper to convert bytes to a PIL Image
+            img = Image.open(BytesIO(part.inline_data.data))
+            img.save("insta_post.png")
+            return "insta_post.png"
+            
+    return None
 
     return None
