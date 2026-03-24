@@ -5,9 +5,10 @@ from PIL import Image
 import google.generativeai as genai
 from google import genai as genai_sdk
 from google.genai import types
+from config.config import Config
 
 # Configure Gemini API Key
-genai.configure(api_key="AIzaSyCKL-HhYfP2u25OOCRyXowNDYXx5hKmXAo")
+genai.configure(api_key=Config.GEMINI_API_KEY)
 # Text Model
 text_model = genai.GenerativeModel("gemini-2.5-flash")
 
@@ -46,7 +47,7 @@ def generate_caption_and_hashtags(topic, tone):
 
     return caption, hashtags
 
-client = genai_sdk.Client(api_key="AIzaSyCKL-HhYfP2u25OOCRyXowNDYXx5hKmXAo")
+client = genai_sdk.Client(api_key=Config.GEMINI_API_KEY)
 # Agent 2: Generate Image
 def generate_image(topic,content):
     prompt = f"Create an Instagram style image for {topic}, for the content: {content}"

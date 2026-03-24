@@ -8,14 +8,8 @@ import PostedPage from './pages/PostedPage.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: '/',
-      component: HomePage
-    },
-    {
-      path: '/posted/:id',
-      component: PostedPage
-    }
+    { path: '/', name: 'Home', component: HomePage },
+    { path: '/posted/:id', name: 'Posted', component: PostedPage }
   ]
 })
 
