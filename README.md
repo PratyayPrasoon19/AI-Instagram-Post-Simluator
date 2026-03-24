@@ -26,7 +26,7 @@ System to generate Instagram posts and simulate posting using AI agents.
 ```bash
 cd backend
 pip install -r requirements.txt
-uvicorn main:app --reload
+python -m uvicorn main:app --reload  
 ```
 
 Backend runs at `http://localhost:8000`.
