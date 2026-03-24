@@ -1,0 +1,121 @@
+# ----------------------------
+# OS Files
+# ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----------------------------
+# Logs
+# ----------------------------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ----------------------------
+# Environment Files
+# ----------------------------
+.env
+.env.*
+*.env
+
+# ----------------------------
+# Dependency Directories
+# ----------------------------
+node_modules/
+jspm_packages/
+bower_components/
+
+# ----------------------------
+# Build / Output Directories
+# ----------------------------
+dist/
+build/
+out/
+target/
+bin/
+obj/
+
+# ----------------------------
+# Python
+# ----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.egg-info/
+.venv/
+venv/
+env/
+ENV/
+
+# ----------------------------
+# Java
+# ----------------------------
+*.class
+*.jar
+*.war
+*.ear
+.gradle/
+build/
+
+# ----------------------------
+# C / C++ / Go
+# ----------------------------
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
+# ----------------------------
+# IDE / Editor Files
+# ----------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ----------------------------
+# Coverage Reports
+# ----------------------------
+coverage/
+*.lcov
+
+# ----------------------------
+# Temporary Files
+# ----------------------------
+tmp/
+temp/
+*.tmp
+
+# ----------------------------
+# Cache
+# ----------------------------
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+
+# ----------------------------
+# Database
+# ----------------------------
+*.db
+*.sqlite
+
+# ----------------------------
+# Misc
+# ----------------------------
+*.pid
+*.seed
+*.pid.lock
